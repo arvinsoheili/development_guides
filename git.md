@@ -35,3 +35,35 @@ To connect your local project to Git, follow these steps:
     ```
     git add .
     ```
+    6. Run the following command to set your Git user email:
+
+    ```
+    git config --global user.email "email address"
+    ```
+
+   Note: Replace `"email address"` with your actual email address.
+
+7. Run the following command to set your Git user name:
+
+    ```
+    git config --global user.name "farshad badri"
+    ```
+
+   Note: Replace `"farshad badri"` with your actual name.
+8. Run the following command to push the changes to the remote repository:
+
+    ```
+   git pull origin main --allow-unrelated-histories
+    ```
+
+9. Run the following command to make the initial commit:
+
+    ```
+    git commit -m "initial commit"
+    ```
+
+10. Run the following command to push the changes to the remote repository:
+
+    ```
+    git push -u origin main
+    ```
