@@ -21,3 +21,24 @@
 -> Note: remember that `blade` is a template engine
 
 api routes resource routes
+##
+
+### 2.Blade sintax
+
+#### I.database values
+
+if you want to use a value from DB instead of using a plain string, you need to type the `key` in `{{}}`:
+```
+['key1' => 'value1', 'key2' => 'value2'] // our database example
+```
+```
+<p>{{ $key1 }} {{ $key2 }}<p/> // how to return the value in html template
+```
+
+#### II.`@if` statment
+
+you can use it like php in the html template but type `@if`, `@else`, `@elseif` instead of `if, else, elseif`.
+
+#### Note: you can use php by start it with `@php` and close it by `@endphp` when we finished.
+
+
