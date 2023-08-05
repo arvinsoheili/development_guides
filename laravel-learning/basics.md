@@ -20,4 +20,4 @@
 
 -> Note: remember that `blade` is a template engine
 
-
+api routes resource routes
