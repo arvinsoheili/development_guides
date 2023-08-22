@@ -20,3 +20,4 @@ open your therminal type:
 php artisan migrate
 ```
 now you have a new database with your custom columns.
+#
