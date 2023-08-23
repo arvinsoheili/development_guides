@@ -14,10 +14,31 @@ laravel will create a file in `app` dir in your root dir.
 
 ### 3.Intract with model
 
-open your controller file. locate your route, there is few ways to intract with your model.
+open your controller file. type `use App\filename-without-format` before the routes functions.
+
+locate your route, there is few ways to intract with your model.
 
 - retrive all of your data and pass it to a view:
+  
   ```
-  $something = modelname::all();
+  $variable = modelname::all();
 
-  return view('pagename', 
+  return view('pagename', [ 'key' => $variable ]);
+  ```
+
+- retrive all of your data, order it and pass it to view:
+
+  ```
+  $variable = modelname::orderBy('colname', 'asc/desc')->get(); 
+  ```
+  NOTE: the get() method is very important unless you dont want to show it in your page.
+
+- retrive and pass the items that you filter it.
+
+  ```
+  $variable = modelname::where('colname', 'value')->get();
+  ```
+  
+
+  
+  
