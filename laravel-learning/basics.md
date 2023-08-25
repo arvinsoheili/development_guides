@@ -142,3 +142,38 @@ Route::get('/{id} ', function ($id) { //you can type anything instead of id
 2.now you need to create a file named `details.blade.php` and make it your wildcard page.
 
 3.now type `{{ $id }}` in any tag you want to show the wildcard value in the page 
+#
+
+# POST Request
+
+we use post request to sent or post some data to databases.
+to do this we need to create a form in html and set `action` and `method` to `/redirectaddress` and `POST`.
+#### example: 
+```
+<form action='/index' mathod='POST` >
+```
+### Handling a POST request
+
+1.create a new route in your routes file:
+```
+route::post('/index', 'NameController@store');
+```
+
+2.Now go to your controller file and create function for your route:
+
+```
+public function  store() {
+
+return redirect('/');
+}
+```
+NOTE: if you fill and submit your form you will end to a error page to prevent this problem you should paste `@csrf` under your form tag.
+
+3.now you gonna access to your database tables with `request('colname')`. you should put it in new array :
+```
+$var = new Var();
+
+$var->colname = request('colname');
+```
+
+4.to save the changes in your database add `$var->save();` at the end.
