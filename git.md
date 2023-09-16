@@ -43,6 +43,7 @@ To connect your local project to Git, follow these steps:
     ```
 
    Note: Replace `"email address"` with your actual email address.
+   
 
 7. Run the following command to set your Git user name:
 
