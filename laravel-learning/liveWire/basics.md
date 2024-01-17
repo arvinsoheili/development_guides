@@ -41,3 +41,20 @@ then add ``wire:submit="createUser"`` to ``form`` property to proceed binding.
     ...
  ])
 ```
+
+you should reset your input fields after form submitted. to do this simply add `$this->reset('name', ...)` at the end of your create method.
+
+### 5. flash massages
+
+after user submit a form there should be a massage to alert success to the.
+
+1. go to your component add the code below at the end of your create method:
+```
+$this->session()->flash('success', 'created successfully');
+```
+2. go to the view add:
+```
+@if(session('success'))
+    {{ session('success') }}//its better to give some style to it
+@endif
+```
