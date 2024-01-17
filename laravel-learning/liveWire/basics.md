@@ -1,0 +1,14 @@
+# adding a livewire to view
+to adding a livewire view to a laravel blade view simply type ``@livewire('component_name')``
+
+everything about livewire will be done in the component(the file in app/livewire)
+
+# component commands
+1. ### you can add methods similar to controller methods in the component.
+you can use ``wire:click="component_method"`` to interact with the method by clicking a button or a link.
+
+2. ### you can pass some data in view by doing: 
+```
+return view('view directory',compact('variable'))
+```
+### 3. data binding
