@@ -28,7 +28,7 @@ public function createUser()
     //code...
 }
 ```
-then add ``wire:submit="createUser"`` to form property to proceed binding.
+then add ``wire:submit="createUser"`` to ``form`` property to proceed binding.
 
 ### 4. validation
 
