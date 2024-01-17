@@ -58,3 +58,13 @@ $this->session()->flash('success', 'created successfully');
     {{ session('success') }}//its better to give some style to it
 @endif
 ```
+### 6. pagination
+
+to use livewire pagination follow these steps:
+1. go to component location, use: `$users = user::paginate(int: items per page)`, instead of: `$users = user::all()`
+2. add `use WithPagination;` before all of the methods.
+3. go to the view and implement `{{ $user->links() }}`
+
+- you can switch to bootstrap by publishing livewire config(`php artisan livewire:publish --config`), then open config file location: `config/livewire`. head to "pagination-theme" and change the theme.
+
+- also you can use custom templates for pagination. first use `php artisan livewire:publish --pagination`. then you can access pagination views in the view dir and you should reference the view in `{{ $users->links('vendor.livewire.custom-theme) }}`
