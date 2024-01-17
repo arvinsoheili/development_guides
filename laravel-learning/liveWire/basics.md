@@ -29,3 +29,14 @@ public function createUser()
 }
 ```
 then add ``wire:submit="createUser"`` to form property to proceed binding.
+
+### 4. validation
+
+**validating data in livewire is very similar to how you do it in controller:**
+create a validate property like:
+```
+ $this->validate([
+    'name' -> 'required|...',
+    ...
+ ])
+```
