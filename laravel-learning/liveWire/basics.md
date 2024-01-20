@@ -68,3 +68,19 @@ to use livewire pagination follow these steps:
 - you can switch to bootstrap by publishing livewire config(`php artisan livewire:publish --config`), then open config file location: `config/livewire`. head to "pagination-theme" and change the theme.
 
 - also you can use custom templates for pagination. first use `php artisan livewire:publish --pagination`. then you can access pagination views in the view dir and you should reference the view in `{{ $users->links('vendor.livewire.custom-theme) }}`
+
+### 7. events
+we have two seprate components like: one of them for creating user, and the other is for display it.how we can do somthing that when our new user created we can see it in list.
+1. for the first component we should use the code below in the create method:
+```
+$this->dispatch('user-created', $variable-that-you-use-for-create);
+```
+2. now go to your 2nd component create new method named like updateUser and use this anotation at the top of the function:
+   ```
+   use LiveWire\Attributes\On; //use this after namespaces
+   #[On('user-created')]
+   ```
+- optionally you can use the code on the "render" method. 
+
+
+   
