@@ -91,4 +91,22 @@ to make the component view refresh automatically you should use `wire:poll` in t
 wire:poll.keep-alive.1200ms
 ```
 
+### 9. lazy loading & skeleton loading
+
+imagine a user has a weak connection or the site has slow loading. this is very bad for your site SEO.
+to do something for this, best way is lazy loading.
+to setup a lazy load in the project you should go to your main view and write this in your component view location:
+```
+@livewire('component-view', ['lazy' => true])
+```
+now if there is delay in loading the website user will see a blank page before the site fully loaded. but it's still not good at all. 
+**so we will use Skeleton Loading.**
+we should follow these steps to make a skeleton loading:
+1. find a skeleton loading template and copy the source code.
+2. go to your component and make a new method before your render method. name it "skeletonLoad" or "placeholder" or ... . 
+3. make a new blade name it "skeleton" or "placeholder".
+4. back to your component go to your new mathod add `return view('skeleton')`.
+alright you got your skeleton load now.
+
+
    
