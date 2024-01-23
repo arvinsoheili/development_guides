@@ -82,5 +82,13 @@ $this->dispatch('user-created', $variable-that-you-use-for-create);
    ```
 - optionally you can use the code on the "render" method. 
 
+### 8. polling refresh comonents automatically
+
+to make the component view refresh automatically you should use `wire:poll` in the first tag of your component.
+- use `keep-alive` to make it refresh in background.
+- use an optional timing to add duration of refreshing. you can either use "ms" or "s" to switch between miliseconds or seconds.
+```
+wire:poll.keep-alive.1200ms
+```
 
    
