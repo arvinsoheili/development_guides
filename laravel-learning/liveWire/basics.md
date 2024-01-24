@@ -108,5 +108,26 @@ we should follow these steps to make a skeleton loading:
 4. back to your component go to your new mathod add `return view('skeleton')`.
 alright you got your skeleton load now.
 
+### 10. Live property Update
 
-   
+you better use live property update for search bars and live validation in forms.
+
+you can use it by following these steps:
+1. in your component use:
+```
+public $search;
+```
+in your render function use:
+```
+return view('your component view', [
+    'user' =>  User::latest()
+    ->where('name', 'like', "%{$this->search}%")
+    ->paginate(),
+    ]);
+```
+2. go to your component view add `wire:model.live='search'` to your search input.
+there a potential problem that is if yo use `live` alone it will make alot of requests that may broke your website.
+- you can use `live.blur` to make it search when the user clicked out of the search box.
+- or you can use `live.debounce.200ms` to make it search after the user stoped typing for 200ms.
+- either you can use `live.throttle.500ms` to make a interval fo searching with duration of 500ms.
+thats it.
