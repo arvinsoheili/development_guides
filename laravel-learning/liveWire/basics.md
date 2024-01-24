@@ -131,3 +131,13 @@ there a potential problem that is if yo use `live` alone it will make alot of re
 - or you can use `live.debounce.200ms` to make it search after the user stoped typing for 200ms.
 - either you can use `live.throttle.500ms` to make a interval fo searching with duration of 500ms.
 thats it.
+
+### 11. Computed property
+to use computed property we should make a new method in our component then add `#[computed()]` at the top of it.
+- if we passing a array data to the view we should define our foreach loop like this: `@foreach($this->method-name as $item)`
+
+**there is two benefits for using computed properties**
+1. you can have quick access to the property everywhere in project by using only: `$this->method-name`
+2. you'll have more secure property and it will never show in your html page.
+
+### 12. full page components
