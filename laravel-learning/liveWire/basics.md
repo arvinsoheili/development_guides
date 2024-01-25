@@ -140,4 +140,11 @@ to use computed property we should make a new method in our component then add `
 1. you can have quick access to the property everywhere in project by using only: `$this->method-name`
 2. you'll have more secure property and it will never show in your html page.
 
-### 12. full page components
+### 12. Form objects
+this helps you to refactor your public property and extract them to their own object property. if you have a lot of public property this can help you alot.
+1. you have to go to the terminal and type `php artisan livewire:form formname`. its beter to type the name like "userForm" or "contactUsForm".
+2. now extract your properties to the form.
+3. go back to your component and use `Public formName $form`. instead of $form you can use any variable, but form is kinda standard.
+4. now you should go to your component blade file and use a prefix of your variable name without `$` for the `wire:model` they should be look like this: `wire:model='form.email'`. you should use this for errors as well.
+5. in your component you have validation and reset, you should change them to `$this->form->reset()`. "form" is your variable name.
+- you can have a extra method in your form like: `public function functionName()`, you can use it in your component methods by using `$this->form->functionName()`.
