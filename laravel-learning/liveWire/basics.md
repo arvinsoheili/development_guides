@@ -108,5 +108,43 @@ we should follow these steps to make a skeleton loading:
 4. back to your component go to your new mathod add `return view('skeleton')`.
 alright you got your skeleton load now.
 
+### 10. Live property Update
 
-   
+you better use live property update for search bars and live validation in forms.
+
+you can use it by following these steps:
+1. in your component use:
+```
+public $search;
+```
+in your render function use:
+```
+return view('your component view', [
+    'user' =>  User::latest()
+    ->where('name', 'like', "%{$this->search}%")
+    ->paginate(),
+    ]);
+```
+2. go to your component view add `wire:model.live='search'` to your search input.
+there a potential problem that is if yo use `live` alone it will make alot of requests that may broke your website.
+- you can use `live.blur` to make it search when the user clicked out of the search box.
+- or you can use `live.debounce.200ms` to make it search after the user stoped typing for 200ms.
+- either you can use `live.throttle.500ms` to make a interval fo searching with duration of 500ms.
+thats it.
+
+### 11. Computed property
+to use computed property we should make a new method in our component then add `#[computed()]` at the top of it.
+- if we passing a array data to the view we should define our foreach loop like this: `@foreach($this->method-name as $item)`
+
+**there is two benefits for using computed properties**
+1. you can have quick access to the property everywhere in project by using only: `$this->method-name`
+2. you'll have more secure property and it will never show in your html page.
+
+### 12. Form objects
+this helps you to refactor your public property and extract them to their own object property. if you have a lot of public property this can help you alot.
+1. you have to go to the terminal and type `php artisan livewire:form formname`. its beter to type the name like "userForm" or "contactUsForm".
+2. now extract your properties to the form.
+3. go back to your component and use `Public formName $form`. instead of $form you can use any variable, but form is kinda standard.
+4. now you should go to your component blade file and use a prefix of your variable name without `$` for the `wire:model` they should be look like this: `wire:model='form.email'`. you should use this for errors as well.
+5. in your component you have validation and reset, you should change them to `$this->form->reset()`. "form" is your variable name.
+- you can have a extra method in your form like: `public function functionName()`, you can use it in your component methods by using `$this->form->functionName()`.

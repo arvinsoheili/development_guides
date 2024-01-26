@@ -13,3 +13,4 @@ auth dir with it views will create in views dir.
 ```
 route::get('/route', 'controller')->middleware('auth');
 ```
+
