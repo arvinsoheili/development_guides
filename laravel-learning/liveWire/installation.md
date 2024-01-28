@@ -3,7 +3,7 @@ to install LiveWire we can use this command:
 ```
 composer require livewire/livewire
 ```
-# how to make a liveWire component
+# how to make a liveWire component 
 first open a terminal.
 there is two way to make a component.
 first way: 
