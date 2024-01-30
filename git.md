@@ -57,7 +57,7 @@ To connect your local project to Git, follow these steps:
     ```
    git pull origin main --allow-unrelated-histories
     ```
-
+ 
 9. Run the following command to make the initial commit:
 
     ```
