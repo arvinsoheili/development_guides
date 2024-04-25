@@ -38,7 +38,7 @@ To connect your local project to Git, follow these steps:
     6. Run the following command to set your Git user email:
 
     ```
-    git config --global user.email "email address"
+    git config --global user.email "soheiliarvin@gmail.com"
     ```
 
    Note: Replace `"email address"` with your actual email address.
@@ -47,7 +47,7 @@ To connect your local project to Git, follow these steps:
 7. Run the following command to set your Git user name:
 
     ```
-    git config --global user.name "farshad badri"
+    git config --global user.name "arvinsoheili"
     ```
     
 
