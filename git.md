@@ -49,7 +49,7 @@ To connect your local project to Git, follow these steps:
     ```
     git config --global user.name "arvinsoheili"
     ```
-    
+     
 
    Note: Replace `"farshad badri"` with your actual name.
 8. Run the following command to push the changes to the remote repository:
