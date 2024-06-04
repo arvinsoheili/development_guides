@@ -1,7 +1,7 @@
 # GIT 
  
 This guide will help you connect a project from the base to the gate and work with it using Git.
-
+ 
 ### Create a New Empty Repository  
 
 The first step is to create a new empty repository on GitHub. 
