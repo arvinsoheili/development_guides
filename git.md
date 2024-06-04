@@ -72,6 +72,3 @@ To connect your local project to Git, follow these steps:
 
 
 
-    .
-
-
