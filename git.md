@@ -4,6 +4,7 @@ This guide will help you connect a project from the base to the gate and work wi
   
 ### Create a New Empty Repository  
 
+
 The first step is to create a new empty repository on GitHub. 
  
 ### Connecting Local Project to an Existing Git Repo
