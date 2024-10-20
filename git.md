@@ -24,7 +24,7 @@ To connect your local project to Git, follow these steps:
 
    Note: Replace `https://github.com/directory/name.git` with the actual remote origin URL.
 
-4. Run the following command to rename the default branch from `master` to `main`:
+4. Run the following command to rename the default branch from `master` to `main`: 
 
     ```
     git branch -M main
