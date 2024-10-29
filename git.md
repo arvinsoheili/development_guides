@@ -7,7 +7,7 @@ This guide will help you connect a project from the base to the gate and work wi
 The first step is to create a new empty repository on GitHub.  
  
 ### Connecting Local Project to an Existing Git Repo
-   
+    
 To connect your local project to Git, follow these steps: 
 
 1. Open your terminal and navigate to the root directory of your project.  
