@@ -2,8 +2,7 @@ name: Update git.md Daily
 
 on:
   schedule:
-      - cron: '0 21 * * *' # Runs daily at 12:00 AM Turkey Time (TRT)
-  workflow_dispatch: # Allows manual trigger of the workflow
+    - cron: "0 0 * * *"
 
 jobs:
   update-file:
