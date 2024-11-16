@@ -2,7 +2,7 @@ name: Update git.md Daily
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 21 * * *"
 
 jobs:
   update-file:
