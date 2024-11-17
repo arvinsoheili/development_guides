@@ -11,7 +11,7 @@ The first step is to create a new empty repository on GitHub.
 To connect your local project to Git, follow these steps:  
 
 1. Open your terminal and navigate to the root directory of your project.  
-2. Run the following command to initialize Git: 
+2. Run the following command to initialize Git:  
   
     ```
     git init
