@@ -22,3 +22,15 @@ we should make a action like giving a url to check. Act should be only one opera
 
 ### Assert
 we can do one or more assertions, to show if the conditions passed or not.
+##
+
+- remember we got assertsee to check specific value in view, but it wouldn't work everytime for some reason. instead, we can use `assertViewHas` and pass a collection to check if there's the value is exist.
+this is a step by step guide.
+1. in this case we will using a pre stored data, which is product in our case.
+2. we gonna use $products as the stored data which we want to check if this data are already showing in view or not.
+```
+$response->assertViewHas('products', function ($collection) use ($product) {
+    return $collection->contains($product);
+});
+```
+
