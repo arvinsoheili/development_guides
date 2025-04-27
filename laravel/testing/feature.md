@@ -33,4 +33,40 @@ $response->assertViewHas('products', function ($collection) use ($product) {
     return $collection->contains($product);
 });
 ```
+## Acting as a logged in user
+in case that we want to test a page which requires an admin or user logged in, we gonna use `actingAs(user)`.
+we wanna login as the user and begin testing. for Arrange we want to make new user/admin for our test and assign it in `$user` variable. then we going to continue our Arrange part as always
+now in Act section we want to access the url. but we're going to use `actingAs` method. example:
+```php
+// $user is a prebuilt user that we made in Arrange section
+$response = $this->actingAs($user)->get(uri);
+```
+now we can test the page as always.
+then we can write Assert section like previous parts.
 
+## Auth test
+if we want to test authentication in specific pages we won't act as user in our new test. then what we going to do is get the test passed, by using new assert options.
+in case that our unauthenticated page, redirect the user to login page we will use two new assertion options.
+```php
+// the first one is assert status set to 302, which indicates redirected status.
+$response->asertStatus(302);
+// the second option is assertRedirect. we use it to check the page that user redirected to.
+$respone->assertRedirect(uri e.g.: "login);
+```
+
+### Test redirection after login
+if we want to make a test that check our user will redirected to target page after login we can follow these steps.
+1. first make the user/admin in Arrange section.
+2. login the user in login page by doing this:
+```php
+$response = $this->post(uri, [
+    //use the crendintials that your login needs. and remember to use the actuall data that you made the user with.
+    'email' => 'user@user.com',
+    'password' => 'pass1234'
+]);
+```
+3. then, in Assert section we can use the same assertion option that we used for indicating redirections.
+```php
+$response->assertStatus(status: 302)
+->assertRedirect(uri: 'dashboard');
+```
