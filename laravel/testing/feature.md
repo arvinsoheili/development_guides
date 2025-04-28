@@ -70,3 +70,35 @@ $response = $this->post(uri, [
 $response->assertStatus(status: 302)
 ->assertRedirect(uri: 'dashboard');
 ```
+
+## Private mehods or setUp()
+we can avoid create same data by simply using Private methods or using setUp() in our test file.
+
+### Private method
+you can make new private function in your test class like this. for example we want to make a user record in every test instead of writing all of those codes several times, we can do this.
+make a private function like this:
+```php
+private function createUser()
+{
+    // user creation codes
+}
+```
+then you can use this in other functions like this: `$this->createUser()`
+
+### setUp()
+setup method is almose look like the private functions but you can make methods more simple.
+first you want to make setUp() function:
+```php
+protected function serUp(): void
+{
+    parent::serUp(); // don't forget to add this line.
+
+    $this->createUser =  // user creation codes.
+    //then you can use $this->createUser in every other function
+}
+```
+
+## Testing that data will save
+ 
+
+
