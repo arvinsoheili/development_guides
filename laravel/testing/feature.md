@@ -99,6 +99,50 @@ protected function serUp(): void
 ```
 
 ## Testing that data will save
- 
 
+first we will make a post request to our store method which stores any data in database.
+```php
+$response = $this->post(uri: "URI", [
+    // array of the data needs to be inserted
+]);
+```
+
+after that we can check it by using `assertDatabaseHas(table: YOUR TABLE NAME, ARRAY YOU CREATED EARLIER)`
+but you should use $this-> instead of $response->.
+
+### for checking update methods we can do the same but instead we gonna do this:
+```php
+$response = $this->put(uri: "URI", [
+    // array of the data needs to be inserted
+]);
+```
+and to the rest of the steps
+
+### testing deletion
+```php
+$response = $this->delete (uri: "URI");
+
+// Assert
+$respone->assertDatabaseMissing(TABLE NAME, DATA ARRAY);
+//IF you used a factory to create your data you can do this.
+$response->assertDatabaseMissing(TABLE NAME, $DATAVARIABLE->toArray());
+```
+
+## Validation error
+for thesting validation error after submiting your data you can use these assertions:
+```php
+$response->assertSessionHasErrors(['YOUR TARGET ITEMS']);
+// OR
+$response->assertInvalid(['name']); // this will use for more readability.
+```
+
+# TDD: Test Driven Development
+
+in this approch we will write tests first then make the route, controller and view.
+
+this will help us save time by writing automated test with our desired outcome then make the etities. so we don't need to do the tests manually.
+
+the structure is like this: 1. you write test. 2. you see the error. 3. you make the funtionality.
+
+this will help rest api developments being so much easier.
 
