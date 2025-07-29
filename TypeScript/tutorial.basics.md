@@ -263,3 +263,38 @@ console.log(customer?.birthday?.getFullYear()); // the "?." is "Optionaling the 
 let log: any = null;
 log?.('a');
 ```
+
+### Interfaces
+Here we use an `interface` that describes objects that have a `firstName` and `lastName` field. In TypeScript, two types are compatible if their internal structure is compatible. This allows us to implement an interface just by having the shape the interface requires, without an explicit `implements` clause.
+```TS
+interface Person {
+  firstName: string;
+  lastName: string;
+}
+ 
+function greeter(person: Person) {
+  return "Hello, " + person.firstName + " " + person.lastName;
+}
+ 
+let user = { firstName: "Jane", lastName: "User" };
+ 
+document.body.textContent = greeter(user);
+```
+
+An interface declaration is another way to name an object type:
+
+```TS
+interface Point {
+  x: number;
+  y: number;
+}
+ 
+function printCoord(pt: Point) {
+  console.log("The coordinate's x value is " + pt.x);
+  console.log("The coordinate's y value is " + pt.y);
+}
+ 
+printCoord({ x: 100, y: 100 });
+```
+
+ TypeScript is only concerned with the structure of the value we passed to `printCoord` - it only cares that it has the `expected` properties. Being concerned only with the `structure and capabilities` of types is why we call TypeScript a `structurally typed` type system.
