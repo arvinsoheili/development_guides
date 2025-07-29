@@ -23,6 +23,9 @@ const [showMenu, setShowMenu] = useState(false);
 
 function `setShowMenu` is used to update the value of show menu by passing the boolean value to it: `setShowMenu(true)`
 
-### what is state?
+### why do we use state in React?
+because it's one way to deal wih data in our react app  s.
 
 
+
+      
