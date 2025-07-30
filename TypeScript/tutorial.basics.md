@@ -298,3 +298,211 @@ printCoord({ x: 100, y: 100 });
 ```
 
  TypeScript is only concerned with the structure of the value we passed to `printCoord` - it only cares that it has the `expected` properties. Being concerned only with the `structure and capabilities` of types is why we call TypeScript a `structurally typed` type system.
+
+# Narrowing Types
+### typeof
+as we learn [here](#union-types), we can narrowing type with `typeof` but typeof isn't the only one.`
+
+so we use
+### in
+imagine a user login page. the user can be either a Standard user or an Admin user.
+```TS
+declare function getStandardSessionToken(name: string, ttl: number): string;
+declare function getAdminSessionToken(name: string, accessLevel: string): string;
+```
+
+we gonna declate two types, one for standard and one for admin user:
+```TS
+type StandardUser = {
+    name: string;
+    SessionTTL: number;
+}
+
+type AdminUser = StandardUser & {
+    isAdmin: true,
+    access: "read-admin" | "write-admin"
+};
+```
+
+Now we gonna return tokens is a function that the user can be standard or admin, so we use `in` here.
+```TS
+function login(user: StandardUser | AdminUser) {
+    if ("isAdmin" in user) {
+        return getAdminSessionToken(user.name, user.access);
+    }
+    return getStandardSessionToken(user.name, user.sessionTTL);
+}
+```
+we checked the input type if it has `isAdmin` or not to show the correct response.
+
+### Type predicates
+the best use of type predicates is when you want to filter out some data. for example the same user boilerplate.
+```TS
+type User = StandardUser | AdminUser;
+
+const users: User[] = [
+    { name: "jane", sessionTTL: 3 },
+    { name: "bob", sessionTTL: Infinity, isAdmin: true, access: "read-admin" },
+    { name: "leah", sessionTTL: Infinity, isAdmin: true, access: "write-admin" },
+    { name: "joe", sessionTTL: 5 }
+];
+```
+But this time we want to filter only standard users.
+```TS
+const standardUsers = users.filter((user): user is StandardUser => {
+    return !(user as AdminUser).isAdmin;
+});
+```
+alright we used `is` when to filter out only standard users. and the return statment declares that the users are standard or admins with boolean value.
+
+### Discriminated Unions
+now we got a user which can have 3 types. we want to have an outcome for each of them. so we use switch:
+```TS
+type StandardUser = {
+    type:"standard";
+    name: string;
+    sessionTTL: number;
+}
+
+type AdminUser = {
+    type: "admin";
+    name: string;
+    access: "read-admin" | "write-admin";
+}
+
+type ProspectUser = {
+    type: "prospect";
+}
+
+type User = StandardUser | AdminUser | ProspectUser;
+
+function login(user: User) {
+    switch (user.type) {
+        case "standard":
+            return getStandardSessionToken(user.name, user.sessionTTL);
+        case "admin":
+            return getAdminSessionToken(user.name, user.access);
+        case "prospect":
+            return null;
+        default:
+            const notPossible: never = user;
+            throw new Error(`unexpected user type: ${user}`);
+    }
+}
+```
+In this case we got something named `Exhaustive Switch`, we have a `switch` with 3 `cases` which will do a job for every type, and a `default` that returns error.
+
+### Instanceof
+The `instanceof` operator checks whether an object is an instance of a particular class or constructor function.
+
+Think of it like this:
+
+> “Was this object created using this class (or constructor)?”
+
+```TS
+class Animal {
+  name: string;
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+
+const dog = new Animal("Rover");
+
+console.log(dog instanceof Animal); // true
+```
+- dog was created using the new Animal(...) constructor.
+
+- So dog `instanceof` Animal returns true.
+
+`instanceof` also helps narrow the type inside conditional blocks.
+```TS
+class Dog {
+  bark() {
+    console.log("Woof!");
+  }
+}
+
+class Cat {
+  meow() {
+    console.log("Meow!");
+  }
+}
+
+function makeSound(animal: Dog | Cat) {
+  if (animal instanceof Dog) {
+    animal.bark(); // ✅ TypeScript knows this is a Dog here
+  } else {
+    animal.meow(); // ✅ So this must be a Cat
+  }
+}
+```
+Thanks to `instanceof`, TypeScript knows which type animal is inside the `if` and `else` blocks.
+
+Also only use `instanceof`:
+
+- When working with classes
+
+- When you need to narrow a union type
+
+- When using new to create objects
+
+<hr/>
+
+- instanceof checks if an object comes from a specific class.
+
+- It uses the prototype chain to do this.
+
+- In TypeScript, it helps narrow types and acts as a type guard.
+
+- Only works with classes or things created using new.
+
+
+# Type Assertions
+
+A type assertion tells TypeScript:
+
+> “Trust me, I know what I’m doing — this value is actually of this specific type.”
+
+It does not change the actual value at runtime — it just tells the TypeScript compiler how to treat the value at compile time.`value as Type`
+```TS
+let someValue: unknown = "hello world";
+
+// Tell TypeScript: "Trust me, it's a string"
+let strLength = (someValue as string).length;
+
+console.log(strLength); // 11
+```
+Here:
+
+- TypeScript doesn’t know what `someValue` is (unknown).
+
+- We assert it's a `string` using `as string`.
+
+- Now we can safely call `.length` on it.
+  
+### When to use Type Assertions
+
+Use them when you’re sure of a value’s type but TypeScript can’t infer it.
+
+Example: Getting a DOM element
+```TS
+const input = document.getElementById("myInput") as HTMLInputElement;
+input.value = "Hello!";
+```
+Without as HTMLInputElement, TypeScript would think it’s just HTMLElement, which doesn't have a value property.
+
+#### Warning
+1. **Doesn’t convert values**
+```TS
+let num = "123" as number; // ❌ still a string at runtime
+```
+TypeScript won't turn "123" into a number. It only pretends it's a number, which could lead to bugs.
+
+2. **Be careful — it's your responsibility**
+
+    TypeScript will not verify that the assertion is actually correct. You're telling it to stop checking.
+
+3. **Avoid unless necessary**
+
+    It’s best to let TypeScript infer types when possible. Overusing as can hide real type problems.
