@@ -1,4 +1,4 @@
-# 🧼 How to Write Clean Git Commits (For Humans and Dumbasses Alike)
+# 🧼 How to Write Clean Git Commits (For Humans)
 
 This guide teaches you how to write **clean**, **helpful**, and **conventional** commit messages that won’t make your future self cry. 👇
 
